@@ -15,13 +15,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import adapter.WorkingAdapter;
+import loader.WorkingLoader;
 import model.DataModel;
 
 public class WorkingActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ArrayList<DataModel>> {
 WorkingAdapter adapter;
     ArrayList<DataModel> list;
     RecyclerView recyclerView;
-    String url="http://localhost/opinionserver/readdata.php";
+    String url="http://geekyboy.16mb.com/readdata.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ WorkingAdapter adapter;
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
+        recyclerView.setAdapter(adapter);
         preparedata();
     }
 
@@ -52,7 +53,8 @@ WorkingAdapter adapter;
 
     @Override
     public Loader<ArrayList<DataModel>> onCreateLoader(int id, Bundle args) {
-        return null;
+
+        return new WorkingLoader(this,url,list,adapter);
     }
 
     @Override

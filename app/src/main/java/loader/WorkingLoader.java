@@ -1,7 +1,9 @@
 package loader;
 
-import android.content.AsyncTaskLoader;
+
 import android.content.Context;
+import android.support.v4.content.AsyncTaskLoader;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +29,7 @@ import model.DataModel;
  * Created by Junejas on 4/15/2017.
  */
 
-public class WorkingLoader extends AsyncTaskLoader<ArrayList<DataModel>>{
+public class WorkingLoader extends AsyncTaskLoader<ArrayList<DataModel>> {
     Context context;
     String url;
     ArrayList<DataModel> data;
@@ -51,9 +53,10 @@ public class WorkingLoader extends AsyncTaskLoader<ArrayList<DataModel>>{
             connection=(HttpURLConnection)url.openConnection();
             connection.setRequestMethod("GET");
             connection.setReadTimeout(10000);
-            connection.setReadTimeout(15000);
+            connection.setConnectTimeout(15000);
             connection.setDoOutput(true);
-
+            connection.setDoInput(true);
+            connection.connect();
             inputStream=connection.getInputStream();
             response=readfromStream(inputStream);
 
@@ -97,6 +100,7 @@ public class WorkingLoader extends AsyncTaskLoader<ArrayList<DataModel>>{
     private void getData(){
         JSONObject jsonObject= null;
         try {
+            Log.e("papa",response);
             jsonObject = new JSONObject(response);
             JSONArray array=jsonObject.getJSONArray("data");
             for(int i=0;i<array.length();i++){
