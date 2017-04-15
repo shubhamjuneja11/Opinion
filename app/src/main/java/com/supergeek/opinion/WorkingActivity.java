@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ WorkingAdapter adapter;
     @Override
     public void onLoadFinished(Loader<ArrayList<DataModel>> loader, ArrayList<DataModel> data) {
         adapter.notifyDataSetChanged();
+        Log.e("papada",data.size()+"");
     }
 
     @Override

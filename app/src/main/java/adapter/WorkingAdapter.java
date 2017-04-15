@@ -1,6 +1,7 @@
 package adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ ArrayList<DataModel> dataModels;
         public MyViewHolder(View itemView) {
             super(itemView);
             data=(TextView)itemView.findViewById(R.id.data);
+            Log.e("papamycount","q");
         }
     }
     @Override
@@ -39,6 +41,8 @@ ArrayList<DataModel> dataModels;
     public void onBindViewHolder(WorkingAdapter.MyViewHolder holder, int position) {
     DataModel dataModel=dataModels.get(position);
         holder.data.setText(dataModel.getText());
+        Log.e("postext12",position+"");
+        Log.e("postext",dataModel.getText());
     }
 
     @Override

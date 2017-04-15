@@ -10,12 +10,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -108,6 +105,7 @@ public class WorkingLoader extends AsyncTaskLoader<ArrayList<DataModel>> {
                 String a=jsonObject1.getString("data");
                 DataModel model=new DataModel(a);
                 data.add(model);
+                Log.e("papa","1");
             }
         } catch (JSONException e) {
             e.printStackTrace();
